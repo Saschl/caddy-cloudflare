@@ -23,4 +23,4 @@ jobs:
       - name: login to registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u Saschl --password-stdin
       - name: push to registry
-        run: docker push ghcr.io/saschl/gigs-ui:latest
+        run: docker push ghcr.io/saschl/caddy:latest
