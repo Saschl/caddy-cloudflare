@@ -22,7 +22,9 @@ jobs:
         run: |
          export IMAGE_TAG=$(grep '^FROM' Dockerfile | sed -n 's/^FROM [^:]*:\([^-]*\).*/\1/p')
       - name: Build with docker
-        run: docker build -t ghcr.io/saschl/caddy:$IMAGE_TAG .
+        run: |
+           echo $IMAGE_TAG
+           docker build -t ghcr.io/saschl/caddy:$IMAGE_TAG .
       - name: login to registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u Saschl --password-stdin
       - name: push to registry
