@@ -18,11 +18,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: getImageVersion
-        run: |
-         export IMAGE_TAG=$(grep '^FROM' Dockerfile | sed -n 's/^FROM [^:]*:\([^-]*\).*/\1/p')
       - name: Build with docker
         run: |
+           export IMAGE_TAG=$(grep '^FROM' Dockerfile | sed -n 's/^FROM [^:]*:\([^-]*\).*/\1/p')
            echo $IMAGE_TAG
            docker build -t ghcr.io/saschl/caddy:$IMAGE_TAG .
       - name: login to registry
