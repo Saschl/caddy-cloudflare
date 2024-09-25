@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Build with docker
         run: |
-           export IMAGE_TAG=$(grep '^FROM' Dockerfile | sed -n 's/^FROM [^:]*:\([^-]*\).*/\1/p')
+           export IMAGE_TAG=$(grep '^FROM' Dockerfile | head -n 1 |sed -n 's/^FROM [^:]*:\([^-]*\).*/\1/p')
            echo $IMAGE_TAG
            docker build -t ghcr.io/saschl/caddy:$IMAGE_TAG .
       - name: login to registry
