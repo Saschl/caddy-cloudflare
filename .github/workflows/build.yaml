@@ -18,9 +18,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: getImageVersion
+        run: |
+         export IMAGE_TAG=$(grep '^FROM' Dockerfile | sed -n 's/^FROM [^:]*:\([^-]*\).*/\1/p')
       - name: Build with docker
-        run: docker build -t ghcr.io/saschl/caddy:latest .
+        run: docker build -t ghcr.io/saschl/caddy:$IMAGE_TAG .
       - name: login to registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u Saschl --password-stdin
       - name: push to registry
-        run: docker push ghcr.io/saschl/caddy:latest
+        run: docker push ghcr.io/saschl/caddy:$IMAGE_TAG
