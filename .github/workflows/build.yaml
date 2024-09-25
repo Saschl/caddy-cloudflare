@@ -23,7 +23,5 @@ jobs:
            export IMAGE_TAG=$(grep '^FROM' Dockerfile | head -n 1 |sed -n 's/^FROM [^:]*:\([^-]*\).*/\1/p')
            echo $IMAGE_TAG
            docker build -t ghcr.io/saschl/caddy:$IMAGE_TAG .
-      - name: login to registry
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u Saschl --password-stdin
-      - name: push to registry
-        run: docker push ghcr.io/saschl/caddy:$IMAGE_TAG
+           echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u Saschl --password-stdin
+           docker push ghcr.io/saschl/caddy:$IMAGE_TAG
