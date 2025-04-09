@@ -18,10 +18,25 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Build with docker
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+ #docker build -t ghcr.io/saschl/caddy:$IMAGE_TAG . 
+ #docker push ghcr.io/saschl/caddy:$IMAGE_TAG
+      - name: Get image tag and login
         run: |
            export IMAGE_TAG=$(grep '^FROM' Dockerfile | head -n 1 |sed -n 's/^FROM [^:]*:\([^-]*\).*/\1/p')
            echo $IMAGE_TAG
-           docker build -t ghcr.io/saschl/caddy:$IMAGE_TAG .
+           echo "correct_tag=$IMAGE_TAG" >> "$GITHUB_ENV"
            echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u Saschl --password-stdin
-           docker push ghcr.io/saschl/caddy:$IMAGE_TAG
+
+
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: 'ghcr.io/saschl/caddy:$correct_tag'
