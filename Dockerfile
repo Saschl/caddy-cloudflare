@@ -5,5 +5,5 @@ RUN xcaddy build   --with github.com/caddy-dns/cloudflare@a8737d095ad5a48ca031ce
                    --with github.com/hslatman/caddy-crowdsec-bouncer/layer4@90a583cf5e6a91dd75a473f40e41f23e13981be5 \
                    --with github.com/protomaps/go-pmtiles/caddy@b85498026ba0afb96c8b01f87d45624791a4f5b4
  
-FROM dhi.io/caddy:2.11.4-debian
+FROM caddy:2.11.4
 COPY --from=builder /usr/bin/caddy /usr/bin/caddy
