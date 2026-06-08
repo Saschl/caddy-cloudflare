@@ -30,6 +30,7 @@ jobs:
            echo $IMAGE_TAG
            echo "correct_tag=$IMAGE_TAG" >> "$GITHUB_ENV"
            echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u Saschl --password-stdin
+           echo "${{ secrets.DHI_TOKEN }}" | docker login dhi.io -u saschl --password-stdin
 
 
       - name: Build and push
