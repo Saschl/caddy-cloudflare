@@ -23,7 +23,7 @@ jobs:
         uses: docker/setup-qemu-action@99012661954931238ded8c8b007157a8430204e1 # v4
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@bb05f3f5519dd87d3ba754cc423b652a5edd6d2c # v4
+        uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4
       - name: Get image tag and login
         run: |
            export IMAGE_TAG=$(grep '^FROM' Dockerfile | head -n 1 |sed -n 's/^FROM [^:]*:\([^-]*\).*/\1/p')
