@@ -3,6 +3,15 @@
   "extends": [
     "config:recommended"
   ],
+  "packageRules": [
+    {
+      "matchManagers": ["custom.regex"],
+      "matchDatasources": ["git-refs"],
+      "matchFileNames": ["Dockerfile"],
+      "groupName": "Caddy plugins",
+      "groupSlug": "caddy-plugins"
+    }
+  ],
   "customManagers": [
     {
       "customType": "regex",
