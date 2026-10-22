@@ -3,6 +3,7 @@ RUN xcaddy build   --with github.com/caddy-dns/cloudflare@a8737d095ad5a48ca031ce
                    --with github.com/hslatman/caddy-crowdsec-bouncer/http@ffdcb7c6f8619effc7510bc0db0edec3609a1d28 \
                    --with github.com/mholt/caddy-l4@33216127f00305f66b468ef625b0bb7d494e5224  \
                    --with github.com/hslatman/caddy-crowdsec-bouncer/layer4@ffdcb7c6f8619effc7510bc0db0edec3609a1d28 \
+                   --with github.com/hslatman/caddy-crowdsec-bouncer/appsec@ffdcb7c6f8619effc7510bc0db0edec3609a1d28 \
                    --with github.com/protomaps/go-pmtiles/caddy@a3e4951ea6a0477b784c27c1dcbfd9c130878c5a
  
 FROM caddy:2.11.7
