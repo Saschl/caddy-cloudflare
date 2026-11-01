@@ -6,8 +6,9 @@
   "packageRules": [
     {
       "matchManagers": ["custom.regex"],
-      "matchDatasources": ["git-refs"],
+      "matchDatasources": ["github-tags"],
       "matchFileNames": ["Dockerfile"],
+      "ignoreUnstable": true,
       "groupName": "Caddy plugins",
       "groupSlug": "caddy-plugins"
     }
@@ -15,15 +16,16 @@
   "customManagers": [
     {
       "customType": "regex",
-      "description": "Update xcaddy plugin commit pins from each repository's default branch",
+      "description": "Update xcaddy plugins from semantic version tags",
       "managerFilePatterns": [
         "/^Dockerfile$/"
       ],
       "matchStrings": [
-        "--with\\s+(?<depName>github\\.com/[^/\\s@]+/[^/\\s@]+)(?:/[^\\s@]+)?@(?<currentDigest>[a-f0-9]{40})(?:\\s|$)"
+        "--with\\s+github\\.com/(?<packageName>[^/\\s@]+/[^/\\s@]+)(?:/[^\\s@]+)?@(?<currentValue>v\\d+\\.\\d+\\.\\d+(?:[-+][^\\s]+)?)(?:\\s|$)"
       ],
-      "packageNameTemplate": "https://{{{depName}}}",
-      "datasourceTemplate": "git-refs"
+      "depNameTemplate": "github.com/{{{packageName}}}",
+      "datasourceTemplate": "github-tags",
+      "versioningTemplate": "semver"
     }
   ]
 }
