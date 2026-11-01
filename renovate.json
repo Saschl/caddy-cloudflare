@@ -9,19 +9,29 @@
       "matchDatasources": ["github-tags"],
       "matchFileNames": ["Dockerfile"],
       "ignoreUnstable": true,
+      "pinDigests": true,
+      "automerge": false,
       "groupName": "Caddy plugins",
       "groupSlug": "caddy-plugins"
+    },
+    {
+      "description": "Keep existing commit pins when a version tag moves",
+      "matchManagers": ["custom.regex"],
+      "matchDatasources": ["github-tags"],
+      "matchFileNames": ["Dockerfile"],
+      "matchUpdateTypes": ["digest"],
+      "enabled": false
     }
   ],
   "customManagers": [
     {
       "customType": "regex",
-      "description": "Update xcaddy plugins from semantic version tags",
+      "description": "Update xcaddy plugin versions and commit pins together from semantic version tags",
       "managerFilePatterns": [
         "/^Dockerfile$/"
       ],
       "matchStrings": [
-        "--with\\s+github\\.com/(?<packageName>[^/\\s@]+/[^/\\s@]+)(?:/[^\\s@]+)?@(?<currentValue>v\\d+\\.\\d+\\.\\d+(?:[-+][^\\s]+)?)(?:\\s|$)"
+        "# renovate: depName=(?<packageName>[^/\\s]+/[^/\\s]+) version=(?<currentValue>v\\d+\\.\\d+\\.\\d+(?:[-+][^\\s]+)?)\\s+ARG [A-Z][A-Z0-9_]*=(?<currentDigest>[a-f0-9]{40})(?:\\s|$)"
       ],
       "depNameTemplate": "github.com/{{{packageName}}}",
       "datasourceTemplate": "github-tags",
