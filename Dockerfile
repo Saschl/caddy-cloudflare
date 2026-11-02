@@ -3,8 +3,8 @@ FROM caddy:2.11.7-builder AS builder
 # Track versions for Renovate, but build from immutable commits.
 # renovate: depName=caddy-dns/cloudflare version=v0.2.4
 ARG CLOUDFLARE_COMMIT=a8737d095ad5a48ca031cea6ab704057dbc2d250
-# renovate: depName=hslatman/caddy-crowdsec-bouncer version=v0.14.1
-ARG CROWDSEC_COMMIT=6b35f6be25e457aa0b94e32c6ae519123e50e7b7
+# renovate: depName=hslatman/caddy-crowdsec-bouncer version=v0.15.0
+ARG CROWDSEC_COMMIT=4a6ce1d3094dbfd270fecf2a91aaab81663d0cb4
 # renovate: depName=mholt/caddy-l4 version=v0.1.2
 ARG CADDY_L4_COMMIT=42db5690dea199f930a6f08005fe2e4aab10dcc9
 # renovate: depName=protomaps/go-pmtiles version=v1.31.2
