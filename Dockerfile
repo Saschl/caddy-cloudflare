@@ -1,4 +1,4 @@
-FROM caddy:2.11.8-builder AS builder
+FROM caddy:2.11.9-builder AS builder
 
 # Track versions for Renovate, but build from immutable commits.
 # renovate: depName=caddy-dns/cloudflare version=v0.2.4
@@ -17,5 +17,5 @@ RUN xcaddy build   --with github.com/caddy-dns/cloudflare@${CLOUDFLARE_COMMIT} \
                    --with github.com/hslatman/caddy-crowdsec-bouncer/appsec@${CROWDSEC_COMMIT} \
                    --with github.com/protomaps/go-pmtiles/caddy@${PMTILES_COMMIT}
  
-FROM caddy:2.11.8
+FROM caddy:2.11.9
 COPY --from=builder /usr/bin/caddy /usr/bin/caddy
