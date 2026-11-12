@@ -5,8 +5,8 @@ FROM caddy:2.11.9-builder AS builder
 ARG CLOUDFLARE_COMMIT=a8737d095ad5a48ca031cea6ab704057dbc2d250
 # renovate: depName=hslatman/caddy-crowdsec-bouncer version=v0.15.0
 ARG CROWDSEC_COMMIT=4a6ce1d3094dbfd270fecf2a91aaab81663d0cb4
-# renovate: depName=mholt/caddy-l4 version=v0.1.2
-ARG CADDY_L4_COMMIT=42db5690dea199f930a6f08005fe2e4aab10dcc9
+# renovate: depName=mholt/caddy-l4 version=v0.1.3
+ARG CADDY_L4_COMMIT=eafc300ef23bcb2a28cc329a18e1e98bcd2b7cee
 # renovate: depName=protomaps/go-pmtiles version=v1.31.2
 ARG PMTILES_COMMIT=a3e4951ea6a0477b784c27c1dcbfd9c130878c5a
 
